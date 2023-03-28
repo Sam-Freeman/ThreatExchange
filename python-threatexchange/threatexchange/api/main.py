@@ -1,0 +1,1 @@
+from threatexchange.api import app

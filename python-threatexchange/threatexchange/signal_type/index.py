@@ -22,6 +22,7 @@ At scale, the flow for matching looks something like:
 from dataclasses import dataclass
 import pickle
 import typing as t
+import json
 
 
 T = t.TypeVar("T")
@@ -134,6 +135,12 @@ class IndexMatchUntyped(t.Generic[S_Co, T]):
                 and self.metadata == other.metadata
             )
         return super().__eq__(other)
+
+    def __dict__(self) -> t.Dict[str, t.Any]:
+        return {
+            'similarity_info': self.similarity_info,
+            'metadata': self.metadata
+        }
 
 
 IndexMatch = IndexMatchUntyped[SignalSimilarityInfo, T]
