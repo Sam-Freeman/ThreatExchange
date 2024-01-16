@@ -26,6 +26,7 @@ dependencies = [
     "python-dateutil",
 ]
 
+
 [project.optional-dependencies]
 all = [
     "mypy",
@@ -47,6 +48,9 @@ warn_unused_configs = true
 warn_redundant_casts = true
 warn_unused_ignores = true
 strict_optional = true
+
+[tool.setuptools.package-data]
+OpenMediaMatch = ["templates/**/*", "migrations/*"]
 
 [[tool.mypy.overrides]]
 module = "flask_apscheduler.*,importlib_metadata.*"
