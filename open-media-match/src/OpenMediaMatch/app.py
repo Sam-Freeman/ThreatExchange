@@ -37,6 +37,8 @@ from OpenMediaMatch.blueprints import development, hashing, matching, curation, 
 from OpenMediaMatch.storage.interface import BankConfig
 from OpenMediaMatch.utils import dev_utils
 
+from OpenMediaMatch.storage.postgres import database
+
 
 def _is_debug_mode():
     """Does it look like the app is being run in debug mode?"""
@@ -127,6 +129,7 @@ def create_app() -> flask.Flask:
             scheduler.start()
 
         storage.init_flask(app)
+        database.db.create_all()
 
         is_production = app.config.get("PRODUCTION", True)
         # Register Flask blueprints for whichever server roles are enabled...
