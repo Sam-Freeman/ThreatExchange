@@ -33,6 +33,8 @@ def seed_banks_random(banks: int = 2, seeds: int = 10000) -> None:
 
     types: list[t.Type[CanGenerateRandomSignal]] = [PdqSignal, VideoMD5Signal]
 
+    all_content = BankConfig(name="ALL_CONTENT", matching_enabled_ratio=1.0)
+    storage.bank_update(all_content, create=True)
     for i in range(banks):
         # create bank
         bank = BankConfig(name=f"SEED_BANK_{i}", matching_enabled_ratio=1.0)
